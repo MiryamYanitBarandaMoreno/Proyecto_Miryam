@@ -11,7 +11,7 @@ class Server {
         //Paths http://localhost:3000/api/v1
         this.basePath = '/api/v1';                    //Ruta base
 
-        this.usersPath = `${this.basePath}/users`;    //Path para la tabla Users
+        this.usersPath = `${this.basePath}/chapters`;    //Path para la tabla
         
 
         this.middlewares();                            //Invocacion de los middlewares
