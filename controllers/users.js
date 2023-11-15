@@ -43,7 +43,7 @@ const listData = async (req = request, res = response) => {
             return;
         }
 
-        const sql = CharacterModel.getData; // Usa la consulta desde el modelo
+        const sql = CharacterModel.getData;
         const query = `%${q}%`;
 
         const Characters = await conn.query(sql, [query, query, query, query, query], (err) => {

@@ -10,7 +10,8 @@ const router = Router();
 
 router.get('/',listAllCharacter);
 
-router.get('/:search',listData)
+http://localhost:3000/api/v1/search$q=Yanit
+router.get('/search',listData)
 
 router.put('/',addCharacter);
 
