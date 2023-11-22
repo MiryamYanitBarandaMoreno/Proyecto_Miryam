@@ -65,6 +65,73 @@ const listData = async (req = request, res = response) => {
     }
 }
 
+const listUserByID = async (req = request, res = response) => {
+    const {id} = req.params;
+
+    if (isNaN(id)){
+        res.status(404).json({msg: 'Invalid ID'});
+        return;
+    }
+
+    let conn;
+
+    try {
+        conn = await pool.getConnection();
+
+        const [user] = await conn.query(CharacterModel.getByID, [id], (err) =>{
+            if(err){
+                throw err
+            }
+        });
+
+        if (!user || user.is_active===0){
+            res.status(404).json({msg:'User not found'});
+            return;
+        }
+        res.json(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }finally{
+        if (conn) conn.end();
+    }
+}
+
+// controllers/users.js
+
+const listDataWithLimitOffset = async (req = request, res = response) => {
+    const { limit, offset } = req.query;
+
+    if (!limit || !offset || isNaN(limit) || isNaN(offset)) {
+        res.status(400).json({ msg: 'Invalid limit or offset parameters' });
+        return;
+    }
+
+    let conn;
+
+    try {
+        conn = await pool.getConnection();
+
+        const [data] = await conn.query(CharacterModel.getDataWithLimitOffset, [parseInt(limit), parseInt(offset)], (err) => {
+            if (err) {
+                throw err;
+            }
+        });
+
+        res.json({ msg: 'Results found:', data });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    } finally {
+        if (conn) conn.end();
+    }
+};
+
+module.exports = {
+    listDataWithLimitOffset,
+};
+
+
 /**
  * ENDPOINT CREATE
  * para agregar un nuevo registro
@@ -268,4 +335,4 @@ const deleteCharacter = async (req= request, res = response)=>{
     }
     }    
 
-module.exports = {listAllCharacter, listData, addCharacter, updateCharacter, deleteCharacter}
+module.exports = {listAllCharacter, listData, listUserByID, listDataWithLimitOffset, addCharacter, updateCharacter, deleteCharacter}

@@ -17,6 +17,12 @@ const CharacterModel = {
                 Note LIKE ?
             `,
 
+    getDataWithLimitOffset: `
+            SELECT * FROM dbchapters
+            LIMIT ? OFFSET ?
+    `,
+
+            
     addCharacter: 
             `INSERT INTO dbchapters (
                 Name,
