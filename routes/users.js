@@ -2,7 +2,6 @@ const {Router} = require('express');
 const { listAllCharacter,
         listData,
         listUserByID,
-        listDataWithLimitOffset,
         addCharacter,
         updateCharacter,
         deleteCharacter        
@@ -14,8 +13,6 @@ router.get('/',listAllCharacter);
 
 http://localhost:3000/api/v1/search$q=Yanit
 router.get('/search',listData);
-
-router.get('/data',listDataWithLimitOffset);
 
 router.get('/:id',listUserByID);
 

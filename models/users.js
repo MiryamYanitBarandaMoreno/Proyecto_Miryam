@@ -1,5 +1,5 @@
 const CharacterModel = {
-    getAll: `SELECT * FROM dbchapters`,
+    getAll: `SELECT * FROM dbchapters WHERE is_active = 1`,
 
     getByName: `SELECT * FROM 
                 dbchapters WHERE
@@ -16,13 +16,7 @@ const CharacterModel = {
                 Intro_Year LIKE ? OR
                 Note LIKE ?
             `,
-
-    getDataWithLimitOffset: `
-            SELECT * FROM dbchapters
-            LIMIT ? OFFSET ?
-    `,
-
-            
+      
     addCharacter: 
             `INSERT INTO dbchapters (
                 Name,
