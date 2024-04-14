@@ -27,43 +27,6 @@ const listAllCharacter = async (req = request, res = response) => {
     }
 }
 
-/**
- * ENDPOINT READ
- * para listar informacion en base a un criterio
- */
-const listData = async (req = request, res = response) => {
-    let conn;
-    const { q } = req.query; // Obtén el valor de 'q' de la consulta
-
-    try {
-        conn = await pool.getConnection();
-
-        if (!q) {
-            res.status(400).json({ msg: 'Missing search parameter' });
-            return;
-        }
-
-        const sql = CharacterModel.getData;
-        const query = `%${q}%`;
-
-        const Characters = await conn.query(sql, [query, query, query, query, query], (err) => {
-            if (err) {
-                throw err;
-            }
-        });
-
-        if (Characters.length > 0 || !Characters || Characters.is_active===0) {
-            res.json({ msg: 'Results found:', data: Characters });
-        } else {
-            res.status(404).json({ msg: 'No matches were found.' });
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).json(error);
-    }finally{
-        if (conn) conn.end();
-    }
-}
 
 //Mostrar la informacion en base al id indicado
 const listUserByID = async (req = request, res = response) => {
