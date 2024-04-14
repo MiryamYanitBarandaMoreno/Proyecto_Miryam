@@ -11,6 +11,8 @@ const router = Router();
 
 router.get('/',listAllCharacter);
 
+http://localhost:3000/api/v1/search$q=Yanit
+router.get('/search',listData);
 
 router.get('/:id',listUserByID);
 
