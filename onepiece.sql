@@ -95,6 +95,8 @@ INSERT INTO `dbchapters` (`id`, `Name`, `Intro_Chapter`, `Intro_Episode`, `Intro
 (51, 'Charlotte Akimeg', 894, 869, 2018, 1, 'Her name was revealed in One Piece Magazine Vol.4.'),
 (52, 'Charlotte Allmeg', 894, 869, 2018, 1, 'Her name was revealed in One Piece Magazine Vol.4.'),
 (53, 'Charlotte Amande', 827, 786, 2016, 1, 'Her name was revealed in Chapter 845.'),
+(54, 'Emelyn', 2000, 2555, 2023, 0, NULL),
+(55, 'Mandarina', 2000, 2555, 2023, 0, NULL);
 
 --
 -- Índices para tablas volcadas
